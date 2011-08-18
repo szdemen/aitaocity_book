@@ -1,7 +1,7 @@
 <?php
-
+session_start();
 //sid验证
-/*
+
 noEmptyCk('sid','sid错误');
 
 $now_sid	=	session_id();
@@ -9,10 +9,10 @@ if($_GET['sid']	!= $now_sid){
 	echo 'sid error';	
 	die();
 }
-*/
+
 //参数检查
-noEmptyCk('com','sid错误');
-noEmptyCk('nu','sid错误');
+noEmptyCk('com','com code error');
+noEmptyCk('nu','nu code error');
 
 
 echo curlGet("http://api.kuaidi100.com/apione?com=".$_GET['com']."&nu=".$_GET['nu']."&show=2");

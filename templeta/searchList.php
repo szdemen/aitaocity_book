@@ -12,8 +12,8 @@
 			   type: "GET", 
 			   url : "ajax_log_info.php",
 			   dataType:'html',
-			   //data:  'com='+com_code+'&nu='+nu+'&show=2'+'&sid='+<?php echo $session_id;?>,
-			   data:  'com='+com_code+'&nu='+nu+'&show=3',
+			   data:  'com='+com_code+'&nu='+nu+'&show=3'+'&sid='+'<?php  echo session_id();?>',
+			  // data:  'com='+com_code+'&nu='+nu+'&show=3',
 			   success: function(data){
 				   //alert('get!');
 					$('#logical_info').html(data); 

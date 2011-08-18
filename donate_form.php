@@ -129,7 +129,7 @@ function traninput(comcode){
                 </ul>
                 
         </div>
-        
+
         <input name="action" type="hidden" value="add_donate">
         <button class="btn_all_submit">确认提交</button>
 </form>

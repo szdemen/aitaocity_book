@@ -1,8 +1,5 @@
 <?php include_once("head.php"); ?>
 
-
-
-
 <div class="project_list">
 		<div style="padding:5px;"><a href="/">&gt;主页</a> - <a href="project.php">捐助项目</a> - 查看详情 / <a href="#" onClick="history.go(-1);">返回列表</a></div>
 		<ul>
