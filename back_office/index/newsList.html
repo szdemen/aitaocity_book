@@ -1,0 +1,42 @@
+
+<include file="Tpl/default/index/header.html" />
+
+
+<div style="padding:15px;">
+<a href="newsAdd" class="link_orange">[添加新闻]</a><br>
+
+
+<table width="800" border="1" class="date_table">
+    <tr>
+        <th>ID</th>
+        <th>标题</th>
+        <th>内容(前30字预览)</th>
+        <th>显示状态</th>
+        <th>发布时间</th>
+        <th>操作</th>
+    </tr>
+    
+  <?php
+  	if(!empty($list))
+     foreach($list as $key_news => $value_news) {
+?>
+<tr>
+        <td><?=$value_news['id']?></td>
+          <td><?=$value_news['title']?></td>
+          <td><?=msubstr($value_news['content'],0,30,'utf8',true)?></td>
+          <td><?=$value_news['state']=='1'?'显示':'隐藏'  ?></td>
+         <td><?=$value_news['datetime']?></td>
+          <td><a href="__URL__/newsEdit?id=<?=$value_news['id']?>" class="link_orange">编辑</a> / <a href="newsDel?id=<?=$value_news['id']?>" class="link_orange">删除</a></td>
+    </tr>
+<?php }?>
+</table>
+<br />
+
+
+{$page}
+
+</div>
+
+
+</body>
+</html>

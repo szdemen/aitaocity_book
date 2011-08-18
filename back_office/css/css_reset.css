@@ -1,0 +1,101 @@
+@charset "UTF-8";
+/*
+Copyright 2010, KISSY UI Library v1.0dev
+MIT Licensed
+build: 417 Jan 17 22:31
+*/
+body,h1,h2,h3,h4,h5,h6,hr,p,blockquote,dl,dt,dd,ul,ol,li,pre,form,fieldset,legend,button,input,textarea,th,td{margin:0;padding:0;}body,button,input,select,textarea{font:12px/1.5 tahoma,arial,\5b8b\4f53,sans-serif;}h1,h2,h3,h4,h5,h6{font-size:100%;}address,cite,dfn,em,var{font-style:normal;}code,kbd,pre,samp{font-family:courier new,courier,monospace;}small{font-size:12px;}ul,ol{list-style:none;}a{text-decoration:none;}a:hover{text-decoration:underline;}sup{vertical-align:text-top;}sub{vertical-align:text-bottom;}legend{color:#000;}fieldset,img{border:0;}button,input,select,textarea{font-size:100%;}table{border-collapse:collapse;border-spacing:0;}
+
+
+
+
+
+
+
+
+
+#web_body{ width:980px; margin-left:auto; margin-right:auto; font-size:12px; line-height:16px;}
+
+
+/*全局默认链接样式__浅黑色文字, 鼠标经过加下划线*/
+a.link_index:link{ color:#666; text-decoration:none; } 
+a.link_index:visited{color:#666;text-decoration:none;} 
+a.link_index:hover{ color:#000;text-decoration: underline;} 
+a.link_index:active{color:#666;text-decoration:none;} 
+
+/*全局默认链接样式__深黑色文字, 鼠标经过加下划线*/
+a.link_index_bk:link{ color:#000; text-decoration:none; } 
+a.link_index_bk:visited{color:#000;text-decoration:none;} 
+a.link_index_bk:hover{ color:#000;text-decoration: underline;} 
+a.link_index_bk:active{color:#000;text-decoration:none;} 
+
+
+
+/*全局默认链接样式__白色文字, 鼠标经过加下划线*/
+a.link_index_wh:link{ color:#FFF; text-decoration:none; } 
+a.link_index_wh:visited{color:#FFF;text-decoration:none;} 
+a.link_index_wh:hover{ color:#FFF;text-decoration: underline;} 
+a.link_index_wh:active{color:#FFF;text-decoration:none;} 
+
+.tiny_logo{
+	vertical-align:bottom;
+}
+
+
+#head_logo{
+	height:53px;
+}
+
+#head_bar{
+	background-image:url(../images/top_bar_bg.jpg);
+	background-repeat:repeat-x;
+	height:26px;
+	clear:both;
+	text-align:right;
+	/*padding-top:3px;*/
+}
+
+#head_notice{
+	height:18px;	border-top:solid 1px #CCC;	padding-top:3px;	margin-top:3px; color:#999;
+}
+
+
+
+/*注册页面*/
+.reg_text_right{
+	text-align:right;
+}
+
+.reg_input_style{
+	height:16px;
+	width:250px;
+	padding:2px;
+}
+
+.reg_button{
+	background-color:#000;
+	color:#FFF;
+	border:solid 1px #000;
+	padding-left:10px;
+	padding-right:10px;
+}
+
+
+
+
+
+/*底下css*/
+#foot{
+	border-top: solid 1px #CCC;
+	height:30px;
+	padding-top:4px;
+	text-align:right;
+	clear:both;
+}
+
+
+/*分页链接*/
+a.link_cpage:link{ color:#0088CC; text-decoration:none; } 
+a.link_cpage:visited{color:#0088CC;text-decoration:none;} 
+a.link_cpage:hover{ color:#0088CC;text-decoration: underline;} 
+a.link_cpage:active{color:#0088CC;text-decoration:none;} 

@@ -1,0 +1,42 @@
+
+<include file="Tpl/default/index/header.html" />
+
+
+<script type="text/javascript" src="/back_office/Tpl/Public/ckeditor/ckeditor.js"></script>
+<script language="javascript" type="text/javascript" src="/back_office/Tpl/Public/My97DatePicker/WdatePicker.js"></script>
+
+
+新闻添加:<br />
+
+<form action="__URL__/doAddNews" method="post" style="margin:15px; clear:both;">
+
+<div class="input_item">
+	<h3>标题</h3><label><input name="title" type="text" class="input_text_normal"  /></label>
+</div>
+
+<div class="input_item"><h3>内容</h3>
+    <label>
+        <textarea name="content"  id="content" style="width:500px;"></textarea>
+        <script type="text/javascript">
+				//<![CDATA[
+					CKEDITOR.replace( 'content' );
+				//]]>
+		</script>
+    </label>
+</div>
+
+<div class="input_item">
+	<h3>发布时间</h3><label><input name="datetime" type="text"  class="input_text_normal" id="datetime" onClick="WdatePicker()"/></label>
+
+</div>
+
+<br />
+<br />
+<input name="" type="submit" value="新增新闻" class="button_normal" />
+
+
+</form>
+
+
+</body>
+</html>

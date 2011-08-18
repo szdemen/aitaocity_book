@@ -1,0 +1,188 @@
+
+
+<link rel="stylesheet" type="text/css" media="screen" href="js/jquery_imgareaselect/css/imgareaselect-default.css" /> 
+<script language="javascript" type="text/javascript" src="js/jquery_imgareaselect/scripts/jquery.min.js"></script>
+<script type="text/javascript" src="js/jquery_imgareaselect/scripts/jquery.imgareaselect.pack.js"></script>
+
+
+<script type="text/javascript"> 
+function preview(img, selection) {
+    if (!selection.width || !selection.height)
+        return;
+    
+    var scaleX = 100 / selection.width;
+    var scaleY = 100 / selection.height;
+ 
+    $('#preview img').css({
+        width: Math.round(scaleX * 300),
+        height: Math.round(scaleY * 300),
+        marginLeft: -Math.round(scaleX * selection.x1),
+        marginTop: -Math.round(scaleY * selection.y1)
+    });
+ 
+    $('#x1').val(selection.x1);
+    $('#y1').val(selection.y1);
+    $('#x2').val(selection.x2);
+    $('#y2').val(selection.y2);
+    $('#w').val(selection.width);
+    $('#h').val(selection.height);    
+}
+ 
+$(function () {
+    $('#photo').imgAreaSelect({ aspectRatio: '1:1', handles: true,
+        fadeSpeed: 200, onSelectChange: preview });
+});
+</script> 
+ 
+<div class="container"> 
+ 
+<!-- <div style="float: left; width: 592px; font-size: 105%;"> --> 
+ 
+<div id="quick-links"> 
+  <img src="imgareaselect.jpg" alt="imgAreaSelect" /> 
+  <br /> 
+  <a class="button download" href="jquery.imgareaselect-0.9.6.zip">Download</a> 
+  <br /> 
+  <a class="button examples" href="examples.html">Examples</a> 
+  <br /> 
+  <a class="button documentation" href="usage.html">Documentation</a> 
+  <br /> 
+  <a class="button faq" href="faq.html">FAQ</a> 
+</div> 
+ 
+<div> 
+ 
+<h1>imgAreaSelect</h1> 
+ 
+<p> 
+  <b>imgAreaSelect</b> is a <a href="http://jquery.com/">jQuery</a> 
+  plugin for selecting a rectangular area of an image. It allows web developers
+  to easily implement image cropping functionality, as well as other user
+  interface features, such as photo notes (like those on
+  <a href="http://flickr.com/">Flickr</a>).
+</p> 
+ 
+<p style="margin-bottom: 0.4em;"> 
+  Plugin features:
+</p> 
+ 
+<ul class="features"> 
+  <li>Highly configurable</li> 
+  <li>Customizable with CSS styling</li> 
+  <li>Handles scaled images</li> 
+  <li>Keyboard support for moving and resizing the selection</li> 
+  <li>Supports callback functions</li> 
+  <li>Provides API functions for easier integration with other application
+    components</li> 
+  <li>Lightweight &mdash; the packed version is less than 8KB</li> 
+</ul> 
+ 
+<p> 
+  The plugin works in all major browsers, including Firefox 2+, Opera 9.5+,
+  Google Chrome, Safari 3+, and Internet Explorer 6+.
+</p> 
+ 
+</div> 
+ 
+</div> 
+ 
+<h2>Live Example</h2> 
+ 
+<div class="container demo"> 
+  <div style="float: left; width: 50%;"> 
+    <p class="instructions"> 
+      Click and drag on the image to select an area. 
+    </p> 
+ 
+    <div class="frame" style="margin: 0 0.3em; width: 300px; height: 300px;"> 
+      <img id="photo" src="http://www.imaging520.com/upload/f4f2903bd99697ed.jpg" /> 
+    </div> 
+  </div> 
+ 
+  <div style="float: left; width: 50%;"> 
+    <p style="font-size: 110%; font-weight: bold; padding-left: 0.1em;"> 
+      Selection Preview
+    </p> 
+  
+    <div class="frame" 
+      style="margin: 0 1em; width: 100px; height: 100px;"> 
+      <div id="preview" style="width: 100px; height: 100px; overflow: hidden;"> 
+        <img src="flower2.jpg" style="width: 100px; height: 100px;" /> 
+      </div> 
+    </div> 
+ 
+    <table style="margin-top: 1em;"> 
+      <thead> 
+        <tr> 
+          <th colspan="2" style="font-size: 110%; font-weight: bold; text-align: left; padding-left: 0.1em;"> 
+            Coordinates
+          </th> 
+          <th colspan="2" style="font-size: 110%; font-weight: bold; text-align: left; padding-left: 0.1em;"> 
+            Dimensions
+          </th> 
+        </tr> 
+      </thead> 
+      <tbody> 
+        <tr> 
+          <td style="width: 10%;"><b>X<sub>1</sub>:</b></td> 
+ 		      <td style="width: 30%;"><input type="text" id="x1" value="-" /></td> 
+ 		      <td style="width: 20%;"><b>Width:</b></td> 
+   		    <td><input type="text" value="-" id="w" /></td> 
+        </tr> 
+        <tr> 
+          <td><b>Y<sub>1</sub>:</b></td> 
+          <td><input type="text" id="y1" value="-" /></td> 
+          <td><b>Height:</b></td> 
+          <td><input type="text" id="h" value="-" /></td> 
+        </tr> 
+        <tr> 
+          <td><b>X<sub>2</sub>:</b></td> 
+          <td><input type="text" id="x2" value="-" /></td> 
+          <td></td> 
+          <td></td> 
+        </tr> 
+        <tr> 
+          <td><b>Y<sub>2</sub>:</b></td> 
+          <td><input type="text" id="y2" value="-" /></td> 
+          <td></td> 
+          <td></td> 
+        </tr> 
+      </tbody> 
+    </table> 
+  </div> 
+</div> 
+ 
+<p class="major"> 
+  &raquo; <a href="examples.html">See more examples</a> 
+</p> 
+ 
+<h2>Quick Usage Instructions</h2> 
+ 
+<p> 
+  <a href="#download">Download</a> the plugin, unzip it, and copy the JavaScript
+  and CSS files to your website/application directory. Load the files in
+  the <code>&lt;head&gt;</code> section of your HTML document.
+</p> 
+ 
+<p class="code">&lt;head&gt;
+ ...
+ <em>&lt;link rel="stylesheet" type="text/css" href="css/imgareaselect-default.css" /&gt;</em> 
+ <em>&lt;script type="text/javascript" src="scripts/jquery.min.js"&gt;&lt;/script&gt;</em> 
+ <em>&lt;script type="text/javascript" src="scripts/jquery.imgareaselect.pack.js"&gt;&lt;/script&gt;</em> 
+ ...
+&lt;/head&gt;
+</p> 
+ 
+<p> 
+  Then, to enable selection on an image, wrap it in a jQuery object and call the
+  <code>imgAreaSelect()</code> method:
+</p> 
+ 
+<p class="code">&lt;script type="text/javascript"&gt;
+$(document).ready(function () {
+    <em>$('img#photo').imgAreaSelect({
+        handles: true,
+        onSelectEnd: someFunction
+    });</em> 
+});
+&lt;/script&gt;</p> 
