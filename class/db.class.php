@@ -323,7 +323,7 @@ class cpage {
 		} 
 		} 
 		} 
-		$multipage .= "<a href=\"$mpurl&page=1\" class='link_cpage'><-</a> "; 
+		$multipage .= "<a href=\"$mpurl&page=1\" class='link_cpage'>&lt;-</a> "; 
 		for($i = $from; $i <= $to; $i++) { 
 		if($i != $curr_page) { 
 		$multipage .= "<a href=\"$mpurl&page=$i\" class='link_cpage'>$i</a> "; 
@@ -331,7 +331,7 @@ class cpage {
 		$multipage .= "<a href=\"#\" style='color:#0088CC; text-decoration: underline;'>".$i.'</a> '; 
 		} 
 		} 
-		$multipage .= $pages > $page ? " ... <a href=\"$mpurl&page=$pages\" class='link_cpage'>-></a>" : " <a href=\"$mpurl&page=$pages\" class='link_cpage'>-></a>"; 
+		$multipage .= $pages > $page ? " ... <a href=\"$mpurl&page=$pages\" class='link_cpage'>-&rt;</a>" : " <a href=\"$mpurl&page=$pages\" class='link_cpage'>-></a>"; 
 		} 
 
 

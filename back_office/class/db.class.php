@@ -1,65 +1,62 @@
-ï»¿<?php
+<?php
 
-//global $cpage_html;	//è¾“å‡ºæ¢é¡µhtmlä»£ç 
+//global $cpage_html;	//Êä³ö»»Ò³html´úÂë
 
 
 class db
 {
-	var $username;
-	//var 
-
 	/*
-	*è¯»å–æ•°æ®
+	*¶ÁÈ¡Êı¾İ
 	*
-	*å‚æ•°
+	*²ÎÊı
 	*table
 	*sql
-	*æ¯é¡µè®°å½•æ•°é‡
-	*è·³è½¬url
+	*Ã¿Ò³¼ÇÂ¼ÊıÁ¿
+	*Ìø×ªurl
 	*/
-	function find($table, $sql, $num_perpage=20, $url="?", &$cpage_html){
+	function find($table, $sql, $num_perpage=10, $url="?", &$cpage_html){
 
 
-		//_______________________________åˆ†é¡µå¤„ç†æ€»æ•°ç»Ÿè®¡_________________________________________
+		//_______________________________·ÖÒ³´¦Àí×ÜÊıÍ³¼Æ_________________________________________
 		if(!empty($table)){
-				$sql_now = "select * from $table WHERE ".$sql   ;//ç”ŸæˆæŸ¥è¯¢è®°å½•æ•°çš„SQLè¯­å¥
+				$sql_now = "select * from $table WHERE ".$sql   ;//Éú³É²éÑ¯¼ÇÂ¼ÊıµÄSQLÓï¾ä
 		}else{
-				$sql_now = $sql   ;//ç”ŸæˆæŸ¥è¯¢è®°å½•æ•°çš„SQLè¯­å¥
+				$sql_now = $sql   ;//Éú³É²éÑ¯¼ÇÂ¼ÊıµÄSQLÓï¾ä
 		}
 			
 		
-		$rs = mysql_query($sql_now) or die("æ— æ³•æ‰§è¡ŒSQLè¯­å¥ï¼š$sql_now "); //æŸ¥è¯¢è®°å½•æ•°
+		$rs = mysql_query($sql_now) or die("ÎŞ·¨Ö´ĞĞSQLÓï¾ä£º$sql_now "); //²éÑ¯¼ÇÂ¼Êı
 
 		
-		$cpage	=	new	cpage;	//å®ä¾‹åŒ–åˆ†é¡µç±»
-		$cpage_html	=	$cpage->make_cpage(mysql_num_rows($rs), $num_perpage, $url);	 //å‚æ•°: è®°å½•æ€»æ•°, æ¯é¡µæ•°é‡, è·³è½¬åœ°å€
+		$cpage	=	new	cpage;	//ÊµÀı»¯·ÖÒ³Àà
+		$cpage_html	=	$cpage->make_cpage(mysql_num_rows($rs), $num_perpage, $url);	 //²ÎÊı: ¼ÇÂ¼×ÜÊı, Ã¿Ò³ÊıÁ¿, Ìø×ªµØÖ·
 		//var_dump($cpage_html);
 		$limit_num	=	$cpage->getLimitNum($num_perpage);
 
 
 
-		//________________________________å†…å®¹è¾“å‡º_________________________________________
+		//________________________________ÄÚÈİÊä³ö_________________________________________
 
 		if(!empty($table)){
 
-			if($num_perpage != 0){	 //æœ‰åˆ†é¡µ
+			if($num_perpage != 0){	 //ÓĞ·ÖÒ³
 				$sql_now = "select * from $table WHERE ".$sql." LIMIT ".$limit_num['top'].",".$limit_num['bottom']." ";
-			}else{	//æ— åˆ†é¡µ
-				$sql_now = "select * from $table WHERE ".$sql   ;//ç”ŸæˆæŸ¥è¯¢è®°å½•æ•°çš„SQLè¯­å¥
+			}else{	//ÎŞ·ÖÒ³
+				$sql_now = "select * from $table WHERE ".$sql   ;//Éú³É²éÑ¯¼ÇÂ¼ÊıµÄSQLÓï¾ä
 			}
 
 		}else{
 
-			if($num_perpage != 0){	 //æœ‰åˆ†é¡µ
+			if($num_perpage != 0){	 //ÓĞ·ÖÒ³
 				$sql_now = $sql   ;
-			}else{	//æ— åˆ†é¡µ
-				$sql_now = $sql   ;//ç”ŸæˆæŸ¥è¯¢è®°å½•æ•°çš„SQLè¯­å¥
+			}else{	//ÎŞ·ÖÒ³
+				$sql_now = $sql   ;//Éú³É²éÑ¯¼ÇÂ¼ÊıµÄSQLÓï¾ä
 			}
 			
 		}
 		//$row = mysql_fetch_assoc($rs); 
 
-		$rs = mysql_query($sql_now) or die("æ— æ³•æ‰§è¡ŒSQLè¯­å¥ï¼š$sql_now "); //æŸ¥è¯¢è®°å½•æ•°
+		$rs = mysql_query($sql_now) or die("ÎŞ·¨Ö´ĞĞSQLÓï¾ä£º$sql_now "); //²éÑ¯¼ÇÂ¼Êı
 
 		$result	=	array();
 		while($row = mysql_fetch_assoc($rs)){
@@ -73,9 +70,9 @@ class db
 
 
 	/*
-	*åªæ˜¯è¯»å–1æ¡æ•°æ®
+	*Ö»ÊÇ¶ÁÈ¡1ÌõÊı¾İ
 	*
-	*å‚æ•°
+	*²ÎÊı
 	*table
 	*sql
 	*/
@@ -83,11 +80,11 @@ class db
 
 
 		if(!empty($table)){
-			$sql_now = "select * from $table WHERE ".$sql   ;//ç”ŸæˆæŸ¥è¯¢è®°å½•æ•°çš„SQLè¯­å¥
+			$sql_now = "select * from $table WHERE ".$sql   ;//Éú³É²éÑ¯¼ÇÂ¼ÊıµÄSQLÓï¾ä
 		}else{
-			$sql_now = $sql   ;//ç”ŸæˆæŸ¥è¯¢è®°å½•æ•°çš„SQLè¯­å¥
+			$sql_now = $sql   ;//Éú³É²éÑ¯¼ÇÂ¼ÊıµÄSQLÓï¾ä
 		}
-		$rs = mysql_query($sql_now) or die("æ— æ³•æ‰§è¡ŒSQLè¯­å¥ï¼š$sql_now "); //æŸ¥è¯¢è®°å½•æ•°
+		$rs = mysql_query($sql_now) or die("ÎŞ·¨Ö´ĞĞSQLÓï¾ä£º$sql_now "); //²éÑ¯¼ÇÂ¼Êı
 	
 		$result	=	array();
 		while($row = mysql_fetch_assoc($rs)){
@@ -97,31 +94,30 @@ class db
 
 		return	$result[0];
 
-
 	}
 
 
 
-	//ç›´æ¥æŸ¥è¯¢sql
+	//Ö±½Ó²éÑ¯sql
 	function find_sql($sql, $num_perpage=10, $url="?", &$cpage_html){
 
-		//_______________________________åˆ†é¡µå¤„ç†æ€»æ•°ç»Ÿè®¡_________________________________
+		//_______________________________·ÖÒ³´¦Àí×ÜÊıÍ³¼Æ_________________________________
 		if(!empty($sql)){
 				$sql_now = $sql   ;
 		}else{
 			return false;
 		}
-		$rs = mysql_query($sql_now) or die("æ— æ³•æ‰§è¡ŒSQLè¯­å¥ï¼š$sql_now "); //æŸ¥è¯¢
+		$rs = mysql_query($sql_now) or die("ÎŞ·¨Ö´ĞĞSQLÓï¾ä£º$sql_now "); //²éÑ¯
 
-		$cpage	=	new	cpage;	//å®ä¾‹åŒ–åˆ†é¡µç±»
-		$cpage_html	=	$cpage->make_cpage(mysql_num_rows($rs), $num_perpage, $url);	 //å‚æ•°: è®°å½•æ€»æ•°, æ¯é¡µæ•°é‡, è·³è½¬åœ°å€
+		$cpage	=	new	cpage;	//ÊµÀı»¯·ÖÒ³Àà
+		$cpage_html	=	$cpage->make_cpage(mysql_num_rows($rs), $num_perpage, $url);	 //²ÎÊı: ¼ÇÂ¼×ÜÊı, Ã¿Ò³ÊıÁ¿, Ìø×ªµØÖ·
 		$limit_num	=	$cpage->getLimitNum($num_perpage);
 
 
 
-		//________________________________å†…å®¹è¾“å‡º_________________________________________
+		//________________________________ÄÚÈİÊä³ö_________________________________________
 		if(!empty($sql)){
-			if($num_perpage != 0){	 //æœ‰åˆ†é¡µ
+			if($num_perpage != 0){	 //ÓĞ·ÖÒ³
 				$sql_now = $sql." LIMIT ".$limit_num['top'].",".$limit_num['bottom']." ";
 			}else{
 				$sql_now= $sql;
@@ -132,7 +128,7 @@ class db
 		}
 
 
-		//$rs = mysql_query($sql_now) or die("æ— æ³•æ‰§è¡ŒSQLè¯­å¥ï¼š$sql_now "); //æŸ¥è¯¢
+		//$rs = mysql_query($sql_now) or die("ÎŞ·¨Ö´ĞĞSQLÓï¾ä£º$sql_now "); //²éÑ¯
 		$result	=	array();
 		while($row = mysql_fetch_assoc($rs)){
 			$result[]	 =	$row;
@@ -146,7 +142,7 @@ class db
 	/*
 	*insert
 	*
-	*å‚æ•°
+	*²ÎÊı
 	*table
 	*array date
 	*where sql
@@ -159,7 +155,7 @@ class db
 
 		$array_num	 =	count($data);
 
-		//åŠ å·¥å­—ç¬¦ä¸²
+		//¼Ó¹¤×Ö·û´®
 		$insert_filed	=	"";
 		$insert_value	=	"";
 
@@ -178,12 +174,11 @@ class db
 			$i++;
 		}
 
-		//åˆæˆ
+		//ºÏ³É
 		$sql	=	"INSERT INTO $table ($insert_filed)VALUES($insert_value) ";
 		//echo $sql;
 		$result	=	mysql_query($sql);
 		$insert_id	=	mysql_insert_id();
-		//echo $insert_id;
 		return $insert_id;
 
 	}
@@ -192,7 +187,7 @@ class db
 	/*
 	*update
 	*
-	*å‚æ•°
+	*²ÎÊı
 	*table
 	*array date
 	*where sql
@@ -200,13 +195,9 @@ class db
 
 	function update($table, $date, $where){
 
-
 		if(empty($date) || empty($where) ||  empty($table) ){
-
 			return false;
-
 		}
-
 
 		$update_str	=	"";
 
@@ -217,23 +208,19 @@ class db
 			if($i!=$array_num	){
 				$update_str	.=	", ";
 			}
-			
 			$i++;
-
 		}
 		
 		$sql	=	"UPDATE $table SET $update_str WHERE $where ";
-		//echo $sql; die();
+		//var_dump($sql);
 		$result	=	mysql_query($sql);
 
 		return $result;
-
-
 	}
 
 
 
-	//åˆ é™¤è®°å½•
+	//É¾³ı¼ÇÂ¼
 	function del($table,$where){
 		if(empty($where) ||  empty($table) ){
 			return false;
@@ -245,18 +232,18 @@ class db
 		return $result;
 
 	}
-
-
-
-	//æˆªå–å†…å®¹è§„å®šå­—æ•°å†…å®¹------------------------
+	
+	
+	
+		
+	//½ØÈ¡ÄÚÈİ¹æ¶¨×ÖÊıÄÚÈİ------------------------
 	function subContent($content){
 		$temp	=	$this->mysubstr($content);
 		return $this->closetags($temp);
-
 	}
 
 	function mysubstr($str) {
-	//æ­£ç¡®æˆªå–ä¸­æ–‡å­—ç¬¦ä¸²
+	//ÕıÈ·½ØÈ¡ÖĞÎÄ×Ö·û´®
 	$start = 1;
 	$len = 801;
 		$tmpstr = "";
@@ -271,24 +258,23 @@ class db
 		 return $tmpstr;
 	}
 
-
 	function closetags($html){
-	/*æˆªå–æœ€åä¸€ä¸ª < ä¹‹å‰çš„å†…å®¹ï¼Œç¡®ä¿å­—ç¬¦ä¸²ä¸­æ‰€æœ‰HTMLæ ‡ç­¾éƒ½ä»¥ > ç»“æŸ*/
+	/*½ØÈ¡×îºóÒ»¸ö < Ö®Ç°µÄÄÚÈİ£¬È·±£×Ö·û´®ÖĞËùÓĞHTML±êÇ©¶¼ÒÔ > ½áÊø*/
 	$html=preg_replace("~<[^<>]+?$~i", "", $html);
-	/*è‡ªåŠ¨åŒ¹é…è¡¥é½æœªå…³é—­çš„HTMLæ ‡ç­¾*/
-	#put all opened tags into an array
+	/*×Ô¶¯Æ¥Åä²¹ÆëÎ´¹Ø±ÕµÄHTML±êÇ©*/
+	//put all opened tags into an array
 	preg_match_all("#<([a-z]+)( .*[^/])?(?!/)>#iU",$html,$result);
 	$openedtags=$result[1];
-	#put all closed tags into an array
+	//put all closed tags into an array
 	preg_match_all("#</([a-z]+)>#iU",$html,$result);
 	$closedtags=$result[1];
 	$len_opened = count($openedtags);
-	# all tags are closed
+	// all tags are closed
 	if(count($closedtags) == $len_opened){
 	   return $html;
 	}
 	$openedtags = array_reverse($openedtags);
-	# close tags
+	// close tags
 	for($i=0;$i<$len_opened;$i++) {
 	   if (!in_array($openedtags[$i],$closedtags)){
 	   $html .= '</'.$openedtags[$i].'>';
@@ -298,11 +284,13 @@ class db
 	}
 	return $html;
 	}
-	//end æˆªå–å†…å®¹è§„å®šå­—æ•°å†…å®¹------------------------
+	//end ½ØÈ¡ÄÚÈİ¹æ¶¨×ÖÊıÄÚÈİ------------------------
 
 
 
-}
+}//end of db class
+
+
 
 
 
@@ -310,7 +298,7 @@ class db
 
 
 /*
--------------------------------------------åˆ†é¡µç±»-----------------------------------------------
+-------------------------------------------·ÖÒ³Àà-----------------------------------------------
 */
 
 
@@ -320,7 +308,7 @@ class cpage {
 
 
 
-	//æ„é€ å‡½æ•°, å®‰å…¨åŠéç©ºåˆ¤å®š
+	//¹¹Ôìº¯Êı, °²È«¼°·Ç¿ÕÅĞ¶¨
 	function make_cpage($t_num, $perpage_p=20, $url){
 
 		if(0==$t_num)
@@ -329,15 +317,15 @@ class cpage {
 		if(!is_numeric($perpage_p))
 			return false;
 			
-		//--------------------åˆ†é¡µæ•°æ®è®¾å®š------------------------
+		//--------------------·ÖÒ³Êı¾İÉè¶¨------------------------
 
-		$total_num =  $t_num;//æ€»è®°å½• 
+		$total_num =  $t_num;//×Ü¼ÇÂ¼ 
 
 
-		//æ¯é¡µæ˜¾ç¤ºé¡¹ç›®æ•°é‡
+		//Ã¿Ò³ÏÔÊ¾ÏîÄ¿ÊıÁ¿
 		$perpage = $perpage_p;
 		
-		//è¯»å–å½“å‰é¡µç 
+		//¶ÁÈ¡µ±Ç°Ò³Âë
 		if(!empty($_GET['page']) && is_numeric($_GET['page'])){
 		$curr_page = $_GET['page'];
 		}
@@ -345,12 +333,12 @@ class cpage {
 			$curr_page = 1;
 		}
 		
-		//é¡µç è·³è½¬çš„åœ°å€, è®°å¾—åŠ ä¸Šç”¨æˆ·å‚æ•°
+		//Ò³ÂëÌø×ªµÄµØÖ·, ¼ÇµÃ¼ÓÉÏÓÃ»§²ÎÊı
 		$mpurl = $url."?";
 		
 
-		//ä¼ å…¥å…±ç”¨åˆ†é¡µå˜é‡
-		$cpage_html	= $this->multi($t_num, $perpage, $curr_page, $mpurl);	 //è¾“å‡ºåˆ†é¡µä»£ç 
+		//´«Èë¹²ÓÃ·ÖÒ³±äÁ¿
+		$cpage_html	= $this->multi($t_num, $perpage, $curr_page, $mpurl);	 //Êä³ö·ÖÒ³´úÂë
 		//var_dump($cpage_html);
 
 		return $cpage_html;
@@ -361,9 +349,9 @@ class cpage {
 	
 	
 	
-	//--------------------åˆ†é¡µæ•°æ®è®¾å®š end------------------------
+	//--------------------·ÖÒ³Êı¾İÉè¶¨ end------------------------
 	
-	// åˆ†é¡µå‡½æ•° 
+	// ·ÖÒ³º¯Êı 
 	function multi($num, $perpage, $curr_page, $mpurl) { 
 		$multipage = ''; 
 		if($num > $perpage) { 
@@ -391,27 +379,27 @@ class cpage {
 		} 
 		} 
 		} 
-		$multipage .= "<a href=\"$mpurl&page=1\" class='link_cpage'>< </a> "; 
+		$multipage .= "<a href=\"$mpurl&page=1\" class='link_cpage'>&lt;-</a> "; 
 		for($i = $from; $i <= $to; $i++) { 
 		if($i != $curr_page) { 
 		$multipage .= "<a href=\"$mpurl&page=$i\" class='link_cpage'>$i</a> "; 
 		} else { 
-		$multipage .= "<a href=\"#\" style='color:#CC0000; text-decoration: underline;'>".$i.'</a> '; 
+		$multipage .= "<a href=\"#\" style='color:#0088CC; text-decoration: underline;'>".$i.'</a> '; 
 		} 
 		} 
-		$multipage .= $pages > $page ? " ... <a href=\"$mpurl&page=$pages\" class='link_cpage'> ></a>" : " <a href=\"$mpurl&page=$pages\" class='link_cpage'> ></a>"; 
+		$multipage .= $pages > $page ? " ... <a href=\"$mpurl&page=$pages\" class='link_cpage'>-&rt;</a>" : " <a href=\"$mpurl&page=$pages\" class='link_cpage'>-></a>"; 
 		} 
 
 
 		return $multipage; 
 	} 
-	//åˆ†é¡µå‡½æ•°end
+	//·ÖÒ³º¯Êıend
 
 
-	//è·å–è®°å½•åç§»æ•°é‡çš„å¼€å¤´åºå·
+	//»ñÈ¡¼ÇÂ¼Æ«ÒÆÊıÁ¿µÄ¿ªÍ·ĞòºÅ
 	function getLimitNum($num_perpage){
 
-		//è¯»å–å½“å‰é¡µç 
+		//¶ÁÈ¡µ±Ç°Ò³Âë
 		if(!empty($_GET['page']) && is_numeric($_GET['page'])){
 		$curr_page = $_GET['page'];
 		}
@@ -429,16 +417,4 @@ class cpage {
 	}
 
 }
-
-//ä¸Šä¼ æ–‡ä»¶å¤„ç†
-function uploadFile($file,$saveto){
-	
-}
-
-//åˆ é™¤æ–‡ä»¶
-function delFile($fileurl){
-	
-}
-
-
 ?>
